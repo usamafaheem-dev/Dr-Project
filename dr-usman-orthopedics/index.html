@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. M. Usman Sarwar | Expert Orthopedic Care</title>
+
+    <!-- Google Fonts included via styles.css (Anton & Outfit) -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Anton', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#ff5722', // Orange accent from template
+                            600: '#e64a19',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body
+    class="font-sans text-gray-800 antialiased bg-white selection:bg-primary-500 selection:text-white overflow-x-hidden">
+
+    <!-- SVG Filter for Water Ripple -->
+    <svg width="0" height="0" class="absolute hidden">
+        <filter id="waterRipple" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.015 0.02" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
+
+    <!-- Top Info Bar -->
+    <div class="bg-gray-50 border-b border-gray-100 text-xs py-2 px-4 hidden lg:block">
+        <div
+            class="max-w-7xl mx-auto flex justify-between items-center text-gray-500 font-medium tracking-wide uppercase">
+            <div class="flex space-x-6">
+                <span><i class="fa-solid fa-location-dot text-primary-500 mr-2"></i> Hameed Latif Hospital,
+                    Lahore</span>
+                <span><i class="fa-regular fa-clock text-primary-500 mr-2"></i> Mon-Thu: 6:00 PM - 9:30 PM</span>
+                <span><i class="fa-solid fa-envelope text-primary-500 mr-2"></i> info@drusmansarwar.com</span>
+            </div>
+            <div>
+                <a href="tel:+923004280554" class="hover:text-primary-600 transition-colors">
+                    Emergency Call: <span class="font-bold text-gray-800">+92 300 4280554</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="w-full z-50 transition-all duration-300 bg-white shadow-sm sticky top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-3">
+                        <img src="logo.png" alt="Logo" class="w-12 h-12 object-contain rounded-lg">
+                        <div class="flex flex-col">
+                            <span class="font-display tracking-wide text-2xl text-primary-600 leading-none">DR.
+                                USMAN</span>
+                            <span
+                                class="text-[10px] text-gray-500 font-bold tracking-[0.2em] uppercase mt-1">Orthopedics</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 text-sm font-bold tracking-wider uppercase text-gray-600">
+                    <a href="#home" class="hover:text-primary-500 transition-colors">Home</a>
+                    <a href="#about" class="hover:text-primary-500 transition-colors">About</a>
+                    <a href="#treatments" class="hover:text-primary-500 transition-colors">Treatments</a>
+                    <a href="#facility" class="hover:text-primary-500 transition-colors">Our Clinic</a>
+                    <a href="#contact" class="hover:text-primary-500 transition-colors">Contact</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="tel:+923004280554"
+                        class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold uppercase tracking-wider rounded-full text-white bg-accent-500 hover:bg-accent-600 transition-all shadow-lg shadow-accent-500/30">
+                        Book Appointment <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-900 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl absolute w-full left-0 border-t border-gray-100 max-h-[80vh] overflow-y-auto">
+            <div class="px-4 pt-2 pb-6 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-3 text-base font-bold text-gray-900 hover:bg-primary-50 hover:text-primary-600 rounded-md uppercase tracking-wider transition-colors">Home</a>
+                <a href="#about" class="block px-3 py-3 text-base font-bold text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md uppercase tracking-wider transition-colors">About</a>
+                <a href="#treatments" class="block px-3 py-3 text-base font-bold text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md uppercase tracking-wider transition-colors">Treatments</a>
+                <a href="#facility" class="block px-3 py-3 text-base font-bold text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md uppercase tracking-wider transition-colors">Our Clinic</a>
+                <a href="#contact" class="block px-3 py-3 text-base font-bold text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md uppercase tracking-wider transition-colors">Contact</a>
+                <a href="tel:+923004280554" class="block px-3 py-3 mt-4 text-sm font-bold text-center text-white bg-accent-500 hover:bg-accent-600 rounded-full uppercase tracking-wider shadow-lg transition-all mx-3">Book Appointment</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section (Template 1 Match) -->
+    <section id="home"
+        class="relative pt-10 pb-20 lg:pt-16 lg:pb-32 overflow-hidden bg-gradient-to-b from-primary-50 via-white to-white min-h-[80vh] flex items-center">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full h-full flex flex-col justify-center">
+
+            <!-- HUGE BACKGROUND TEXT -->
+            <div class="absolute top-10 left-0 w-full text-center z-0 hidden md:block select-none pointer-events-none">
+                <h1
+                    class="text-[8rem] lg:text-[11rem] leading-none font-display text-primary-400 opacity-20 whitespace-nowrap">
+                    EVERY STEP MATTERS
+                </h1>
+            </div>
+
+            <!-- Central Composition -->
+            <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between mt-10 md:mt-24">
+
+                <!-- Left Content -->
+                <div
+                    class="lg:w-1/3 mb-10 lg:mb-0 bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white relative animate-float-slow">
+                    <p class="text-gray-600 font-medium mb-6">
+                        Our skilled surgeons use advanced technology to offer complete orthopedic care in a comfortable
+                        and professional environment.
+                    </p>
+                    <div class="mb-6">
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">We're Open</p>
+                        <p class="text-sm font-bold text-gray-800">Mon-Thu: 6:00 PM – 9:30 PM</p>
+                    </div>
+                    <a href="tel:+923004280554"
+                        class="inline-flex items-center justify-center px-6 py-3 text-sm font-bold uppercase tracking-wider rounded-full text-white bg-accent-500 hover:bg-accent-600 transition-all shadow-lg shadow-accent-500/30">
+                        Book Appointment <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Center 3D Object -->
+                <div class="lg:w-1/3 flex justify-center relative z-20">
+                    <div class="w-80 h-80 lg:w-[450px] lg:h-[450px] relative">
+                        <!-- Glow effect -->
+                        <div
+                            class="absolute inset-0 bg-primary-400 rounded-full filter blur-3xl opacity-30 animate-pulse">
+                        </div>
+                            
+                        <!-- Transparent Bone Layer with Water (ISNet AI) -->
+                        <img src="hero_3d_isnet.png" alt="3D Bone Render"
+                            class="absolute top-0 left-0 w-full h-full object-contain drop-shadow-2xl animate-float-slow water-effect"
+                            style="animation-delay: 1s;">
+                    </div>
+                </div>
+
+                <!-- Right Content (Stats) -->
+                <div
+                    class="lg:w-1/3 flex flex-col gap-8 items-center lg:items-end mt-10 lg:mt-0 text-center lg:text-right">
+                    <div>
+                        <h3 class="text-4xl font-display text-accent-500">10+</h3>
+                        <p class="text-sm font-bold text-gray-800 uppercase tracking-wide">Years Experience</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-display text-accent-500">5000+</h3>
+                        <p class="text-sm font-bold text-gray-800 uppercase tracking-wide">Successful Surgeries</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-display text-accent-500">01</h3>
+                        <p class="text-sm font-bold text-gray-800 uppercase tracking-wide">Top Hospital Rating</p>
+                        <p class="text-xs text-gray-400">Hameed Latif</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Banner -->
+    <div class="bg-primary-100 py-4 border-y border-primary-200 overflow-hidden relative flex">
+        <div
+            class="animate-marquee whitespace-nowrap text-xl font-display text-primary-900 tracking-widest flex items-center">
+            <span>KNEE REPLACEMENT</span> <span class="mx-8 text-accent-500">+</span>
+            <span>HIP SURGERY</span> <span class="mx-8 text-accent-500">+</span>
+            <span>SPORTS INJURIES</span> <span class="mx-8 text-accent-500">+</span>
+            <span>ARTHROSCOPY</span> <span class="mx-8 text-accent-500">+</span>
+            <span>JOINT PAIN</span> <span class="mx-8 text-accent-500">+</span>
+            <span>KNEE REPLACEMENT</span> <span class="mx-8 text-accent-500">+</span>
+            <span>HIP SURGERY</span> <span class="mx-8 text-accent-500">+</span>
+            <span>SPORTS INJURIES</span> <span class="mx-8 text-accent-500">+</span>
+            <span>ARTHROSCOPY</span> <span class="mx-8 text-accent-500">+</span>
+            <span>JOINT PAIN</span> <span class="mx-8 text-accent-500">+</span>
+        </div>
+    </div>
+
+    <!-- About Section (Collage Layout from Reference) -->
+    <section id="about" class="py-24 bg-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+
+                <!-- Left: Text -->
+                <div class="mb-16 lg:mb-0">
+                    <h2 class="text-gray-300 font-display text-6xl md:text-8xl mb-2 opacity-50">About</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 -mt-6 md:-mt-10 relative z-10">Dr. M.
+                        Usman Sarwar</h3>
+
+                    <div class="border-l-4 border-accent-500 pl-6 mb-8">
+                        <h4 class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Our Vision</h4>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            At our clinic, our vision is to blend advanced surgical technology with compassionate care
+                            to create a welcoming space. We aim to inspire confident, pain-free movement through
+                            innovation and personalized orthopedic treatment.
+                        </p>
+                    </div>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-center text-gray-700 font-medium">
+                            <div
+                                class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 mr-4">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            Advanced Minimally Invasive Techniques
+                        </li>
+                        <li class="flex items-center text-gray-700 font-medium">
+                            <div
+                                class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 mr-4">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            Personalized Recovery Plans
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right: Image Collage -->
+                <div class="relative h-[600px] w-full">
+                    <!-- Top Left Image -->
+                    <div
+                        class="absolute top-0 left-0 w-3/5 h-64 rounded-3xl overflow-hidden shadow-2xl z-10 border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000&auto=format&fit=crop"
+                            class="w-full h-full object-cover" alt="Hospital Room">
+                    </div>
+
+                    <!-- Top Right Floating text -->
+                    <div
+                        class="absolute top-24 right-4 bg-primary-100 text-primary-800 text-xs font-bold px-4 py-2 rounded-full rotate-90 origin-right shadow-sm z-30">
+                        Joint Care
+                    </div>
+
+                    <!-- Middle Right Image -->
+                    <div
+                        class="absolute top-20 right-0 w-1/2 h-72 rounded-[40px] overflow-hidden shadow-2xl z-20 border-4 border-white blob-shape-1">
+                        <img src="about.png" class="w-full h-full object-cover" alt="Doctor Portrait">
+                    </div>
+
+                    <!-- Bottom Left Image -->
+                    <div
+                        class="absolute bottom-10 left-10 w-1/2 h-64 rounded-3xl overflow-hidden shadow-2xl z-20 border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop"
+                            class="w-full h-full object-cover" alt="Surgery">
+                    </div>
+
+                    <!-- Floating Badge Bottom -->
+                    <div
+                        class="absolute bottom-32 left-4 bg-accent-100 text-accent-600 text-xs font-bold px-4 py-2 rounded-full -rotate-90 origin-left shadow-sm z-30">
+                        Orthopedic Treatments
+                    </div>
+
+                    <!-- Floating Badge Right -->
+                    <div
+                        class="absolute bottom-20 right-20 bg-primary-500 text-white text-xs font-bold px-6 py-3 rounded-full shadow-lg z-30">
+                        Pain Relief
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatments Section (Blue Cards Style) -->
+    <section id="treatments" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4 max-w-2xl leading-tight">
+                    Expert Treatments —<br>
+                    <span class="text-primary-600">Restoring your mobility</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Card 1 (Blue) -->
+                <div class="bg-primary-500 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden group">
+                    <div
+                        class="absolute -right-10 -bottom-10 opacity-20 group-hover:scale-110 transition-transform duration-500">
+                        <i class="fa-solid fa-bone text-9xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Total Knee Replacement</h3>
+                    <p class="text-primary-100 text-sm mb-8 max-w-[80%] relative z-10">
+                        State-of-the-art surgical intervention to relieve severe knee pain.
+                    </p>
+                    <a href="#contact"
+                        class="inline-block bg-white text-primary-600 text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-md hover:shadow-lg transition-all relative z-10">
+                        Learn More
+                    </a>
+                </div>
+
+                <!-- Card 2 (White) -->
+                <div
+                    class="bg-white rounded-3xl p-8 text-gray-900 shadow-xl relative overflow-hidden group border border-gray-100">
+                    <div
+                        class="absolute right-4 bottom-4 text-primary-100 group-hover:text-primary-200 transition-colors duration-500">
+                        <i class="fa-solid fa-person-walking text-8xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Hip Surgery</h3>
+                    <p class="text-gray-500 text-sm mb-8 max-w-[80%] relative z-10">
+                        Advanced hip replacement and repair procedures for arthritis.
+                    </p>
+                    <a href="#contact"
+                        class="inline-block bg-primary-500 text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-md hover:shadow-lg hover:bg-primary-600 transition-all relative z-10">
+                        Learn More
+                    </a>
+                </div>
+
+                <!-- Card 3 (Blue) -->
+                <div class="bg-primary-600 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden group">
+                    <div
+                        class="absolute -right-6 -bottom-6 opacity-20 group-hover:scale-110 transition-transform duration-500">
+                        <i class="fa-solid fa-crutch text-9xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">ACL Surgery</h3>
+                    <p class="text-primary-100 text-sm mb-8 max-w-[80%] relative z-10">
+                        Expert reconstruction of the anterior cruciate ligament for sports injuries.
+                    </p>
+                    <a href="#contact"
+                        class="inline-block bg-white text-primary-600 text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-md hover:shadow-lg transition-all relative z-10">
+                        Learn More
+                    </a>
+                </div>
+
+                <!-- Card 4 (White) -->
+                <div
+                    class="bg-white rounded-3xl p-8 text-gray-900 shadow-xl relative overflow-hidden group border border-gray-100">
+                    <div
+                        class="absolute right-4 bottom-4 text-accent-100 group-hover:text-accent-200 transition-colors duration-500">
+                        <i class="fa-solid fa-microscope text-8xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Knee Arthroscopy</h3>
+                    <p class="text-gray-500 text-sm mb-8 max-w-[80%] relative z-10">
+                        Minimally invasive diagnostic and therapeutic procedures.
+                    </p>
+                    <a href="#contact"
+                        class="inline-block bg-primary-500 text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-md hover:shadow-lg hover:bg-primary-600 transition-all relative z-10">
+                        Learn More
+                    </a>
+                </div>
+
+                <!-- Card 5 (Accent) -->
+                <div
+                    class="bg-accent-500 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden group md:col-span-2 lg:col-span-2">
+                    <div
+                        class="absolute right-0 top-0 h-full w-1/2 overflow-hidden opacity-30 group-hover:opacity-50 transition-opacity duration-500">
+                        <!-- Abstract pattern or image -->
+                        <div class="w-full h-full bg-accent-600 blob-shape-2 transform scale-150 translate-x-1/4"></div>
+                    </div>
+                    <div class="relative z-10 flex flex-col justify-center h-full">
+                        <h3 class="text-3xl font-bold mb-2">Complete Family Orthopedic Care</h3>
+                        <p class="text-accent-100 text-base mb-6 max-w-md">
+                            Also offering Plantar Fasciitis treatments, Osteoarthritis management, Rheumatology, and
+                            fracture surgeries.
+                        </p>
+                        <div>
+                            <a href="tel:+923004280554"
+                                class="inline-block bg-white text-accent-600 text-[10px] font-bold px-5 py-2.5 rounded-full uppercase tracking-widest shadow-md hover:shadow-lg hover:bg-gray-50 transition-all">
+                                Call for Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Circular Gallery Section (Reference 3 & 4) -->
+    <section id="facility" class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+            <h2 class="text-primary-600 font-bold tracking-widest uppercase text-sm mb-2">Our Environment</h2>
+            <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-16">
+                State-of-the-Art Facility
+            </h3>
+
+            <!-- Custom Circular CSS Layout -->
+            <div class="circular-gallery shadow-2xl">
+                <!-- Center Text Circle -->
+                <div class="circular-center">
+                    <i class="fa-solid fa-hospital text-4xl text-primary-500 mb-4"></i>
+                    <h4 class="text-2xl font-bold text-gray-900 leading-tight mb-2">Orthopedic<br><span
+                            class="text-primary-600">Excellence</span></h4>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Center</p>
+                </div>
+
+                <!-- 4 Wedge Images -->
+                <div class="circle-item circle-item-1 bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1000&auto=format&fit=crop"
+                        alt="Operating Room">
+                </div>
+                <div class="circle-item circle-item-2 bg-gray-300">
+                    <img src="https://images.unsplash.com/photo-1551076805-e18690c5e561?q=80&w=1000&auto=format&fit=crop"
+                        alt="Consultation">
+                </div>
+                <div class="circle-item circle-item-3 bg-gray-400">
+                    <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=1000&auto=format&fit=crop"
+                        alt="Rehabilitation">
+                </div>
+                <div class="circle-item circle-item-4 bg-gray-500">
+                    <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1000&auto=format&fit=crop"
+                        alt="Waiting Area">
+                </div>
+            </div>
+
+            <p class="mt-16 text-gray-500 max-w-2xl mx-auto text-lg">
+                Our practice at Hameed Latif Hospital is built on strong, long-term relationships. Our experience helps
+                us value the qualities and systems that make a medical practice run smoothly, without any chaos.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Visit Site / Call Banner (Reference Bottom) -->
+    <section class="py-12 bg-primary-900 text-white relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-1/3 h-full bg-accent-500 opacity-20 transform -skew-x-12"></div>
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-6 md:mb-0">
+                <i class="fa-solid fa-arrow-right text-4xl mr-6 transform -rotate-45 text-accent-500"></i>
+                <div>
+                    <h2 class="text-3xl font-display tracking-wide">Visit Our Clinic</h2>
+                    <p class="text-primary-200">Available Treatments & Consultations</p>
+                </div>
+            </div>
+            <div class="bg-white text-gray-900 rounded-3xl md:rounded-full px-5 py-4 md:px-8 md:py-4 flex items-center shadow-2xl w-full sm:w-auto">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-gray-100 rounded-full flex items-center justify-center mr-3 md:mr-4 shrink-0">
+                    <i class="fa-solid fa-phone text-primary-600 text-lg md:text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-widest">Schedule Appointment</p>
+                    <a href="tel:+923004280554" class="text-lg md:text-2xl font-bold hover:text-primary-600 transition-colors whitespace-nowrap block mt-0.5">+92
+                        300 4280554</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-[#f8fafc] pt-20 pb-10 text-gray-600 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+
+                <!-- Brand (Span 5) -->
+                <div class="col-span-1 md:col-span-5">
+                    <a href="#" class="flex items-center gap-4 mb-6">
+                        <img src="logo.png" alt="Logo"
+                            class="w-16 h-16 object-contain rounded-xl shadow-sm border border-white bg-white">
+                        <div class="flex flex-col">
+                            <span class="font-display tracking-widest text-3xl text-primary-600 leading-none">DR.
+                                USMAN</span>
+                            <span
+                                class="text-xs text-gray-500 font-bold tracking-[0.2em] uppercase mt-1">Orthopedics</span>
+                        </div>
+                    </a>
+                    <p class="text-sm leading-relaxed mb-8 max-w-md text-gray-500">
+                        Dedicated to providing the highest standard of orthopedic care in Lahore. Restoring mobility and
+                        improving quality of life for our patients at Hameed Latif Hospital.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white hover:shadow-md transition-all">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white hover:shadow-md transition-all">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Details (Span 4) -->
+                <div class="col-span-1 md:col-span-4 lg:pl-8">
+                    <h4
+                        class="text-gray-900 font-bold mb-6 uppercase tracking-widest text-xs border-b border-gray-200 pb-2 inline-block">
+                        Contact Us</h4>
+                    <ul class="space-y-6 text-sm">
+                        <li class="flex items-start group">
+                            <div
+                                class="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-500 mr-4 group-hover:bg-primary-500 group-hover:text-white transition-colors shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <span class="mt-1 text-gray-500">Hameed Latif Hospital 14 New, Abu Bakar Block Garden Town,
+                                Lahore</span>
+                        </li>
+                        <li class="flex items-center group">
+                            <div
+                                class="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-500 mr-4 group-hover:bg-primary-500 group-hover:text-white transition-colors shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <a href="tel:+923004280554"
+                                class="hover:text-primary-600 font-bold text-gray-700 text-lg">+92 300 4280554</a>
+                        </li>
+                        <li class="flex items-center group">
+                            <div
+                                class="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-500 mr-4 group-hover:bg-primary-500 group-hover:text-white transition-colors shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <a href="mailto:info@drusmansarwar.com"
+                                class="hover:text-primary-600 text-gray-500">info@drusmansarwar.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hours (Span 3) -->
+                <div class="col-span-1 md:col-span-3">
+                    <h4
+                        class="text-gray-900 font-bold mb-6 uppercase tracking-widest text-xs border-b border-gray-200 pb-2 inline-block">
+                        Working Hours</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li
+                            class="flex justify-between items-center bg-white p-3 rounded-lg shadow-sm border border-gray-50">
+                            <span class="text-gray-500 font-medium">Mon - Thu</span>
+                            <span class="font-bold text-gray-900">6:00 PM – 9:30 PM</span>
+                        </li>
+                        <li
+                            class="flex justify-between items-center bg-white p-3 rounded-lg shadow-sm border border-gray-50">
+                            <span class="text-gray-500 font-medium">Friday</span>
+                            <span class="font-bold text-primary-600">5:30 PM – 8:00 PM</span>
+                        </li>
+                        <li class="flex justify-between items-center p-3 text-gray-400">
+                            <span>Sat - Sun</span>
+                            <span>Closed</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright Bar -->
+            <div
+                class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-bold uppercase tracking-widest text-gray-400">
+                <p>&copy; 2026 DR. M. USMAN SARWAR. ALL RIGHTS RESERVED.</p>
+                <div class="mt-4 md:mt-0 space-x-6">
+                    <a href="#" class="hover:text-primary-600 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary-600 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

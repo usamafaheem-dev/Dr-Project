@@ -1,0 +1,155 @@
+/* Advanced Styles for Redesigned Layout */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* Animations */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+    animation: marquee 20s linear infinite;
+    display: flex;
+    width: max-content;
+}
+
+@keyframes float-slow {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.animate-float-slow {
+    animation: float-slow 4s ease-in-out infinite;
+}
+
+@keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+    animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9; 
+}
+ 
+::-webkit-scrollbar-thumb {
+    background: #93c5fd; 
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3b82f6; 
+}
+
+/* Utilities */
+html {
+    scroll-behavior: smooth;
+}
+
+.backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+
+/* Fonts */
+.font-anton {
+    font-family: 'Anton', sans-serif;
+}
+
+.font-outfit {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Clip Paths and Shapes for Collage */
+.pill-shape {
+    border-radius: 50px;
+}
+
+.blob-shape-1 {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+}
+
+.blob-shape-2 {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+/* Circular Gallery Implementation */
+.circular-gallery {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.circular-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 30%;
+    background: white;
+    border-radius: 50%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 2rem;
+}
+
+.circle-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 50%, 100% 0, 100% 100%);
+}
+
+.circle-item-1 { clip-path: polygon(50% 50%, 0 0, 100% 0); }
+.circle-item-2 { clip-path: polygon(50% 50%, 100% 0, 100% 100%); }
+.circle-item-3 { clip-path: polygon(50% 50%, 100% 100%, 0 100%); }
+.circle-item-4 { clip-path: polygon(50% 50%, 0 100%, 0 0); }
+
+.circle-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.circle-item:hover img {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .circular-center {
+        width: 50%;
+        height: 50%;
+        padding: 1rem;
+    }
+}
+
+.water-effect { filter: url(#waterRipple); will-change: filter; }
